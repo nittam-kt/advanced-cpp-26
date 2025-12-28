@@ -20,6 +20,7 @@ public:
 
 	wstring          text;
 	shared_ptr<Font> font;
+	Color            color = Color::white;
 
 private:
 	unique_ptr<DirectX::SpriteBatch> spriteBatch;

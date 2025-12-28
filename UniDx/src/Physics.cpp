@@ -30,6 +30,7 @@ namespace UniDx
             {
                 // 以前のリストに含まれていない＝新規
                 getCollider()->gameObject->onTriggerEnter(other);
+                if (!isValid()) return;
             }
             else
             {
@@ -39,12 +40,14 @@ namespace UniDx
 
             // 新しいほうに含まれているので、Stay
             getCollider()->gameObject->onTriggerStay(other);
+            if (!isValid()) return;
         }
 
         // 新しいリストになくて古いほうに残っている=離れた
         for (auto other : triggers_)
         {
             getCollider()->gameObject->onTriggerExit(other);
+            if (!isValid()) return;
         }
 
         // 古いほうを削除して新しいほうを古いほうに
@@ -59,6 +62,7 @@ namespace UniDx
             {
                 // 以前のリストに含まれていない＝新規
                 getCollider()->gameObject->onCollisionEnter(collision);
+                if (!isValid()) return;
             }
             else
             {
@@ -68,12 +72,14 @@ namespace UniDx
 
             // 新しいほうに含まれているので、Stay
             getCollider()->gameObject->onCollisionStay(collision);
+            if (!isValid()) return;
         }
 
         // 新しいリストになくて古いほうに残っている=離れた
         for (auto col : collisions_)
         {
             getCollider()->gameObject->onCollisionExit(col);
+            if (!isValid()) return;
         }
 
         // 古いほうを削除して新しいほうを古いほうに
@@ -270,7 +276,10 @@ namespace UniDx
         // TODO: 当たったRigidbodyがついているGameObjectでも呼び出す
         for (auto& shape : physicsShapes)
         {
-            shape.collideCallback();
+            if (shape.isValid())
+            {
+                shape.collideCallback();
+            }
         }
     }
 

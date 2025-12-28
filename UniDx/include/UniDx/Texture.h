@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <memory>
 #include <DirectXTex.h>
@@ -17,6 +17,9 @@ class Camera;
 class Texture : public Object
 {
 public:
+    D3D11_TEXTURE_ADDRESS_MODE wrapModeU;
+    D3D11_TEXTURE_ADDRESS_MODE wrapModeV;
+
     Texture() : Object([this]() {return wstring_view(fileName); }),
         wrapModeU(D3D11_TEXTURE_ADDRESS_CLAMP),
         wrapModeV(D3D11_TEXTURE_ADDRESS_CLAMP),
@@ -24,13 +27,18 @@ public:
     {
     }
 
-    // 画像ファイルを読み込む
+    /** @brief 画像ファイルから読み込む*/
     bool Load(const std::wstring& filePath);
 
-    void setForRender() const;
+    /**
+     * @brief メモリ上のRGBA8画像(UNORM)からテクスチャを生成する
+     * @param pixels: width * height * 4 bytes
+     */
+    bool LoadFromMemoryRGBA8(const void* pixels, int width, int height, bool isSRGB);
 
-    D3D11_TEXTURE_ADDRESS_MODE wrapModeU;
-    D3D11_TEXTURE_ADDRESS_MODE wrapModeV;
+    void bind() const;
+
+    void setName(const wstring& n) { fileName = n; }
 
 protected:
     ComPtr<ID3D11SamplerState> samplerState;
@@ -41,6 +49,8 @@ protected:
 
     // 画像情報
     DirectX::TexMetadata m_info;
+
+    void ensureSampler_();
 };
 
 

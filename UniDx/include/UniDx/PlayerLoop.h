@@ -44,6 +44,7 @@ protected:
     virtual void update();
     virtual void lateUpdate();
     virtual void render();
+    virtual void checkDestroy();
     virtual void finalize();
 
     void awake(GameObject* object);

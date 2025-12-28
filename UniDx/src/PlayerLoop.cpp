@@ -14,13 +14,10 @@ using namespace DirectX;
 #include <SpriteFont.h>
 
 #include <UniDx/D3DManager.h>
-#include <UniDx/Time.h>
 #include <UniDx/SceneManager.h>
 #include <UniDx/Scene.h>
 #include <UniDx/Behaviour.h>
-#include <UniDx/Camera.h>
 #include <UniDx/Renderer.h>
-#include <UniDx/Physics.h>
 #include <UniDx/LightManager.h>
 #include <UniDx/Input.h>
 #include <UniDx/Canvas.h>
@@ -42,9 +39,6 @@ void PlayerLoop::Initialize(HWND hWnd)
     // Direct3D初期化
     D3DManager::getInstance()->Initialize(hWnd, 1280, 720);
 
-    // シーンマネージャのインスタンス作成
-    SceneManager::create();
-
     // 入力の初期化
     Input::initialize();
 
@@ -53,6 +47,9 @@ void PlayerLoop::Initialize(HWND hWnd)
 
     // ライトマネージャのインスタンス作成
     LightManager::create();
+
+    // シーンマネージャのインスタンス作成
+    SceneManager::create();
 }
 
 
@@ -89,9 +86,7 @@ int PlayerLoop::MainLoop()
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            //============================================
-            // ウィンドウメッセージ処理
-            //============================================
+            // Windowsのメッセージ処理
             // 終了メッセージがきた
             if (msg.message == WM_QUIT) {
                 break;
@@ -103,16 +98,14 @@ int PlayerLoop::MainLoop()
             }
         }
 
-        using clock = std::chrono::steady_clock;          // モノトニックなので経過時間計測向き
+        // 経過時間計測
+        using clock = std::chrono::steady_clock;
         auto start = clock::now();
 
-        //============================================
-        // ゲームの処理を書く
-        //============================================
         // 画面を塗りつぶす
-        D3DManager::getInstance()->Clear(0.3f, 0.5f, 0.9f, 1.0f);
+        D3DManager::getInstance()->Clear(0.35f, 0.55f, 0.9f, 1.0f);
 
-        Time::SetDeltaTimeFixed();
+        Time::SetDeltaTimeFixed(); // Unity同様、FixedUpdate()では deltaTime と fixedDeltaTime が同じ
 
         while (restFixedUpdateTime > Time::fixedDeltaTime)
         {
@@ -125,7 +118,7 @@ int PlayerLoop::MainLoop()
             restFixedUpdateTime -= Time::fixedDeltaTime;
         }
 
-        Time::SetDeltaTimeFrame();
+        Time::SetDeltaTimeFrame(); // Update()では deltaTime を経過時間に
 
         // 入力更新
         input();
@@ -138,6 +131,9 @@ int PlayerLoop::MainLoop()
 
         // 描画処理
         render();
+
+        // 削除チェック
+        checkDestroy();
 
         // バックバッファの内容を画面に表示
         D3DManager::getInstance()->Present();
@@ -183,13 +179,13 @@ void PlayerLoop::input()
 //  更新処理
 void PlayerLoop::update()
 {
-    // 各コンポーネントの Start()
+    // 各オブジェクトの Start()
     for (auto& it : SceneManager::getInstance()->GetActiveScene()->GetRootGameObjects())
     {
         checkStart(&*it);
     }
 
-    // 各コンポーネントの Update()
+    // 各オブジェクトの Update()
     for (auto& it : SceneManager::getInstance()->GetActiveScene()->GetRootGameObjects())
     {
         update(&*it);
@@ -197,7 +193,7 @@ void PlayerLoop::update()
 }
 
 
-// 後の更新処理
+// 後更新処理
 void PlayerLoop::lateUpdate()
 {
     // 各コンポーネントの LateUpdate()
@@ -248,12 +244,28 @@ void PlayerLoop::render()
 }
 
 
+// 後の更新処理
+void PlayerLoop::checkDestroy()
+{
+    // 各コンポーネントの checkDestroy()
+    auto* scene = SceneManager::getInstance()->GetActiveScene();
+    for (int i = 0; i < scene->GetRootGameObjects().size();)
+    {
+        auto& o = scene->GetRootGameObjects()[i];
+        if (! o->checkDestroy())
+        {
+            ++i; // 削除しないときは次
+        }
+    }
+}
+
+
 // 終了処理
 void PlayerLoop::finalize()
 {
+    SceneManager::destroy();
     LightManager::destroy();
     Physics::destroy();
-    SceneManager::destroy();
     D3DManager::destroy();
 }
 

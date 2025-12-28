@@ -12,14 +12,15 @@ Component::Component() :
 
         // set
         [this](bool value) {
-            if (!_enabled && value) {
+            if (!_enabled && value && !isCalledDestroy) {
+                _enabled = true;
                 if (!isCalledAwake) { Awake(); isCalledAwake = true; }
                 OnEnable();
             }
             else if (_enabled && !value) {
+                _enabled = false;
                 if (isCalledAwake) { OnDisable(); }
             }
-            _enabled = value;
         }
     ),
     transform(
@@ -27,22 +28,35 @@ Component::Component() :
     ),
     _enabled(true),
     isCalledAwake(false),
-    isCalledStart(false)
+    isCalledStart(false),
+    isCalledDestroy(false)
 {
 
 }
 
-// デストラクタ
-Component::~Component()
+void Component::doDestroy()
 {
+    isCalledDestroy = true; // 以降で enabled=true は無効
     if (_enabled)
     {
-        enabled = false;
+        enabled = false; // 無効化（この中でOnDisable()が呼ばれる）
     }
     if (isCalledAwake)
     {
         OnDestroy();
     }
+}
+
+// デストラクタ（仮想 OnDestroy をここで呼ばない）
+Component::~Component()
+{
+}
+
+void Destroy(Component* component)
+{
+    assert(component != nullptr);
+    component->enabled = false; // 無効化（ここはUniyと挙動が異なる）
+    component->isCalledDestroy = true; // フレームの終わりに削除される
 }
 
 }

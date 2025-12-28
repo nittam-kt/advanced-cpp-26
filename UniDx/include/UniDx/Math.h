@@ -20,7 +20,7 @@ namespace UniDx
 	/** @brief 2D ベクトル */
 	struct Vector2 : DirectX::XMFLOAT2
 	{
-		Vector2() noexcept : XMFLOAT2(0.f, 0.f) {}
+		constexpr Vector2() noexcept : XMFLOAT2(0.f, 0.f) {}
 		constexpr Vector2(float ix, float iy) noexcept : XMFLOAT2(ix, iy) {}
 		constexpr explicit Vector2(float ix) noexcept : XMFLOAT2(ix, ix) {}
 		Vector2(const DirectX::XMFLOAT2& V) noexcept : XMFLOAT2(V.x, V.y) {}
@@ -45,7 +45,7 @@ namespace UniDx
 	/** @brief 3D ベクトル */
 	struct Vector3 : DirectX::XMFLOAT3
 	{
-		Vector3() noexcept : XMFLOAT3(0.f, 0.f,0.f) {}
+		constexpr Vector3() noexcept : XMFLOAT3(0.f, 0.f,0.f) {}
 		constexpr Vector3(float ix, float iy, float iz) noexcept : XMFLOAT3(ix, iy, iz) {}
 		constexpr explicit Vector3(float ix) noexcept : XMFLOAT3(ix, ix, ix) {}
 		Vector3(const DirectX::XMFLOAT3& V) noexcept : XMFLOAT3(V.x, V.y, V.z) {}
@@ -55,7 +55,7 @@ namespace UniDx
 		/** @brief 二乗長さを取得 */
 		float sqrMagnitude() const noexcept { return x * x + y * y + z * z; }
 		/** @brief 正規化したベクトルを返す */
-		Vector3 normalized() const noexcept
+		[[nodiscard]] Vector3 normalized() const noexcept
 		{
 			const DirectX::XMVECTOR v1 = DirectX::XMLoadFloat3(this);
 			const DirectX::XMVECTOR X = DirectX::XMVector3Normalize(v1);
@@ -78,9 +78,9 @@ namespace UniDx
 		static const Vector3 negativeInfinity;
 	};
 	/** @brief ベクトルの内積 */
-	inline float Dot(const Vector3& v1, const Vector3& v2) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
+	inline constexpr float Dot(const Vector3& v1, const Vector3& v2) noexcept { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
 	/** @brief ベクトルの外積 */
-	inline Vector3 Cross(const Vector3& v1, const Vector3& v2) noexcept
+	[[nodiscard]] inline Vector3 Cross(const Vector3& v1, const Vector3& v2) noexcept
 	{
 		using namespace DirectX;
 		const XMVECTOR x1 = XMLoadFloat3(&v1);
@@ -99,7 +99,7 @@ namespace UniDx
 		return XMVectorGetX(X);
 	}
 	/** @brief 2点間の二乗距離 */
-	inline float SqrDistance(const Vector3& v1, const Vector3& v2)
+	inline float SqrDistance(const Vector3& v1, const Vector3& v2) noexcept
 	{
 		using namespace DirectX;
 		const XMVECTOR x1 = XMLoadFloat3(&v1);
@@ -112,7 +112,7 @@ namespace UniDx
 	/** @brief 4D ベクトル */
 	struct Vector4 : DirectX::XMFLOAT4
 	{
-		Vector4() noexcept : XMFLOAT4(0.f, 0.f, 0.f, 0.f) {}
+		constexpr Vector4() noexcept : XMFLOAT4(0.f, 0.f, 0.f, 0.f) {}
 		constexpr Vector4(float ix, float iy, float iz, float iw) noexcept : XMFLOAT4(ix, iy, iz, iw) {}
 		constexpr explicit Vector4(float ix) noexcept : XMFLOAT4(ix, ix, ix, ix) {}
 		Vector4(const DirectX::XMFLOAT4& V) noexcept : XMFLOAT4(V.x, V.y, V.z, V.w) {}
@@ -131,7 +131,7 @@ namespace UniDx
 	{
 		float x, y, z, w;
 
-		Quaternion() noexcept : x(0.f), y(0.f), z(0.f), w(1.f) {}
+		constexpr Quaternion() noexcept : x(0.f), y(0.f), z(0.f), w(1.f) {}
 		constexpr Quaternion(float ix, float iy, float iz, float iw) noexcept : x(ix), y(iy), z(iz), w(iw) {}
 		Quaternion(const DirectX::XMFLOAT4& V) noexcept : x(V.x), y(V.y), z(V.z), w(V.w) {}
 		explicit Quaternion(const DirectX::XMVECTOR& v) { DirectX::XMStoreFloat4(reinterpret_cast<DirectX::XMFLOAT4*>(this), v); }
@@ -169,6 +169,56 @@ namespace UniDx
 			const XMVECTOR q = XMQuaternionMultiply(XMQuaternionMultiply(qz, qx), qy);
 			return Quaternion(q);
 		}
+		/** @brief fromDirからtoDirへ回転するクォータニオンを生成 */
+		static Quaternion FromToRotation(const Vector3& fromDir, const Vector3& toDir) noexcept
+		{
+			using namespace DirectX;
+			const XMVECTOR F = XMVector3Normalize(XMLoadFloat3(&fromDir));
+			const XMVECTOR T = XMVector3Normalize(XMLoadFloat3(&toDir));
+			const float dot = XMVectorGetX(XMVector3Dot(F, T));
+			if (dot >= 1.f)
+			{
+				return identity;
+			}
+			else if (dot <= -1.f)
+			{
+				XMVECTOR axis = XMVector3Cross(F, XMLoadFloat3(&Vector3::right));
+				if (XMVector3NearEqual(XMVector3LengthSq(axis), g_XMZero, g_XMEpsilon))
+				{
+					axis = XMVector3Cross(F, XMLoadFloat3(&Vector3::up));
+				}
+
+				const XMVECTOR Q = XMQuaternionRotationAxis(axis, XM_PI);
+				return Quaternion(Q);
+			}
+			else
+			{
+				const XMVECTOR C = XMVector3Cross(F, T);
+				XMFLOAT4 result;
+				XMStoreFloat4(&result, C);
+				const float s = sqrtf((1.f + dot) * 2.f);
+				result.x /= s;
+				result.y /= s;
+				result.z /= s;
+				result.w = s * 0.5f;
+				return Quaternion(result);
+			}
+		}
+		/** @brief 前方向と上方向に回転するクォータニオンを生成 */
+		static Quaternion LookRotation(const Vector3& forward, const Vector3& up) noexcept
+		{
+			using namespace DirectX;
+			Quaternion q1 = FromToRotation(Vector3::forward, forward);
+			Vector3 c = Cross(forward, up.normalized());
+			const XMVECTOR C = XMLoadFloat3(&c);
+			if (XMVector3NearEqual(XMVector3LengthSq(C), g_XMZero, g_XMEpsilon))
+			{
+				return q1;
+			}
+			const XMVECTOR U = XMVector3Rotate(XMLoadFloat3(&Vector3::up), q1.XMLoad());
+			Quaternion q2 = FromToRotation(Vector3(U), up);
+			return Quaternion(XMQuaternionMultiply(q2.XMLoad(), q1.XMLoad()));
+		}
 
 		// 単項演算子
 		constexpr Quaternion operator+() const noexcept { return *this; }
@@ -178,7 +228,7 @@ namespace UniDx
 		explicit operator const DirectX::XMFLOAT4& () const { return *reinterpret_cast<const DirectX::XMFLOAT4*>(this); }
 	};
 	/** @brief クォータニオンの逆 */
-	inline Quaternion Inverse(const Quaternion& from) noexcept
+	[[nodiscard]] inline Quaternion Inverse(const Quaternion& from) noexcept
 	{
 		auto q = DirectX::XMLoadFloat4(&static_cast<const DirectX::XMFLOAT4&>(from));
 		return Quaternion(DirectX::XMQuaternionInverse(q) );
@@ -189,8 +239,17 @@ namespace UniDx
 	{
 		float r, g, b, a;
 
-		Color() noexcept : Color(0.f, 0.f, 0.f, 1.f) {}
-		explicit Color(float ir, float ig, float ib, float ia = 1.0f) noexcept : r(ir), g(ig), b(ib), a(ia) {}
+		constexpr Color() noexcept : Color(0.f, 0.f, 0.f, 1.f) {}
+		constexpr explicit Color(float ir, float ig, float ib, float ia = 1.0f) noexcept : r(ir), g(ig), b(ib), a(ia) {}
+
+		const DirectX::XMVECTOR XMLoad() const
+		{
+			return DirectX::XMLoadFloat4(reinterpret_cast<const DirectX::XMFLOAT4*>(this));
+		}
+		void XMStore(const DirectX::XMVECTOR& v)
+		{
+			XMStoreFloat4(reinterpret_cast<DirectX::XMFLOAT4*>(this), v);
+		}
 
 		static const Color black;
 		static const Color blue;
@@ -240,7 +299,7 @@ namespace UniDx
 		}
 		explicit Matrix4x4(DirectX::CXMMATRIX M) noexcept { XMStore(M); }
 		/** @brief 逆行列 */
-		Matrix4x4 inverse() const
+		[[nodiscard]] Matrix4x4 inverse() const
 		{
 			using namespace DirectX;
 			const XMMATRIX M = XMLoad();
@@ -392,7 +451,7 @@ namespace UniDx
 		const XMVECTOR R = XMQuaternionMultiply(A, B);
 		return Quaternion(R);
 	}
-	inline Vector3 operator*(const Quaternion& q, const Vector3& v) noexcept
+	inline Vector3 operator*(const DirectX::XMFLOAT3& v, const Quaternion& q) noexcept
 	{
 		using namespace DirectX;
 		const XMVECTOR Q = q.XMLoad();

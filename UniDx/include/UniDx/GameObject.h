@@ -17,6 +17,12 @@ class Behaviour;
 class Transform;
 class Collider;
 
+/**
+  * @brief GameObjectを破棄
+  * 実際に削除されるタイミングはフレームの終了時
+  */
+void Destroy(GameObject* component);
+
 
 // --------------------
 // GameObjectクラス
@@ -26,9 +32,9 @@ class GameObject : public Object
 public:
     Transform* transform;
 
-    const std::vector<std::unique_ptr<Component>>& GetComponents() { return components; }
+    const std::vector<std::unique_ptr<Component>>& GetComponents() const { return components; }
 
-    GameObject(wstring_view n = L"GameObject") : Object([this](){return wstring_view(name_);}), name_(n)
+    GameObject(wstring_view n = L"GameObject") : Object([this](){return wstring_view(name_);}), name_(n), isCalledDestroy(false)
     {
         // デフォルトでTransformを追加
         transform = AddComponent<Transform>();
@@ -42,6 +48,9 @@ public:
     }
     template<typename... ComponentPtrs>
     GameObject(const wstring& name, Vector3 position, ComponentPtrs&&... components);
+
+    // デストラクタ
+    ~GameObject();
 
     void Add() {} // ヘルパー関数でパック展開
 
@@ -64,7 +73,7 @@ public:
 
     template<typename T, typename... Args>
     T* AddComponent(Args&&... args) {
-        static_assert(std::is_base_of<Component, T>::value, "T must be a Component");
+        static_assert(std::is_base_of_v<Component, T>, "T must be a Component");
         auto comp = std::make_unique<T>(std::forward<Args>(args)...);
         comp->gameObject = this;
         T* ptr = comp.get();
@@ -73,17 +82,21 @@ public:
     }
 
     template<typename T>
-    T* GetComponent(bool includeInactive = false) {
+    [[nodiscard]] T* GetComponent(bool includeInactive = false) {
         for (auto& comp : components) {
             auto casted = dynamic_cast<T*>(comp.get());
-            if (casted != nullptr && (comp->enabled || includeInactive)) {
+            if (casted != nullptr && (comp->enabled || includeInactive && !comp->isDestroyed())) {
                 return casted;
             }
         }
         return nullptr;
     }
 
+    template<typename Predicate>
+    GameObject* Find(Predicate pred) const;
+
     void SetName(const wstring& n) { name_ = n; }
+    bool checkDestroy();
 
     virtual void onTriggerEnter(Collider* other);
     virtual void onTriggerStay(Collider* other);
@@ -95,6 +108,9 @@ public:
 protected:
     wstring name_;
     std::vector<std::unique_ptr<Component>> components;
+    bool isCalledDestroy = false;
+
+    friend void Destroy(GameObject*);
 };
 
 } // namespace UniDx

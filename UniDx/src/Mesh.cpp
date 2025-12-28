@@ -2,6 +2,7 @@
 #include <UniDx/Mesh.h>
 
 #include <UniDx/D3DManager.h>
+#include <UniDx/Material.h>
 
 namespace UniDx{
 
@@ -73,5 +74,18 @@ void SubMesh::render() const
     }
 }
 
+
+void Mesh::render(std::span<const std::shared_ptr<Material>> materials) const
+{
+    for (int i = 0; i < submesh.size(); ++i)
+    {
+        auto& sub = submesh[i];
+        if (i < materials.size() && materials[i] != nullptr)
+        {
+            materials[i]->bind();
+        }
+        sub->render();
+    }
+}
 
 }

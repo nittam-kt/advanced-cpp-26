@@ -25,9 +25,9 @@ void Canvas::LoadDefaultMaterial(const wchar_t* assetPath)
 {
 	std::filesystem::path assetRoot = assetPath;
 	defaultMaterial = std::make_unique<Material>();
-	defaultMaterial->shader.compile<VertexPC>(assetRoot / L"Color.hlsl");
+	defaultMaterial->shader->compile<VertexPC>(assetRoot / L"Color.hlsl");
 	defaultTextureMaterial = std::make_unique<Material>();
-	defaultTextureMaterial->shader.compile<VertexPTC>(assetRoot / L"Sprite.hlsl");
+	defaultTextureMaterial->shader->compile<VertexPTC>(assetRoot / L"Sprite.hlsl");
 }
 
 

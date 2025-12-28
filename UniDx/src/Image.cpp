@@ -61,7 +61,7 @@ void Image::render(const Matrix4x4& proj) const
 		{
 			mesh->createBuffer<VertexPC>();
 		}
-		owner->getDefaultMaterial()->setForRender();
+		owner->getDefaultMaterial()->bind();
 	}
 	else
 	{
@@ -69,7 +69,7 @@ void Image::render(const Matrix4x4& proj) const
 		{
 			mesh->createBuffer<VertexPTC>();
 		}
-		owner->getDefaultTextureMaterial()->setForRender();
+		owner->getDefaultTextureMaterial()->bind();
 	}
 
 	// 定数バッファ
@@ -78,7 +78,7 @@ void Image::render(const Matrix4x4& proj) const
 
 	// ─ ワールド行列を位置に合わせて作成
 	ConstantBufferPerObject cb{};
-	cb.world = transform->getLocalToWorldMatrix();
+	cb.world = transform->localToWorldMatrix();
 
 	// 定数バッファ更新
 	D3DManager::getInstance()->GetContext()->UpdateSubresource(constantBufferPerObject.Get(), 0, nullptr, &cb, 0, 0);

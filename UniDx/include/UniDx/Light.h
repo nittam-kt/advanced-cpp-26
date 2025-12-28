@@ -6,15 +6,12 @@
 namespace UniDx
 {
 
-using namespace std;
-
 enum LightType
 {
     LightType_Spot,
     LightType_Directional,
     LightType_Point,
 };
-
 
 
 // --------------------

@@ -105,13 +105,14 @@ UniDx::GameObject の継承関係図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:aaffc3fc794f447ebcc0558cfd0b928b6" id="r_aaffc3fc794f447ebcc0558cfd0b928b6"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_uni_dx_1_1_component.html">Component</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaffc3fc794f447ebcc0558cfd0b928b6">GetComponents</a> ()</td></tr>
+<tr class="memitem:a600845741b8bc94b4194f4cc67e3e8a9" id="r_a600845741b8bc94b4194f4cc67e3e8a9"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_uni_dx_1_1_component.html">Component</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600845741b8bc94b4194f4cc67e3e8a9">GetComponents</a> () const</td></tr>
 <tr class="memitem:ab0094a406020d6cbb72c87de550d0d17" id="r_ab0094a406020d6cbb72c87de550d0d17"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0094a406020d6cbb72c87de550d0d17">GameObject</a> (wstring_view n=L&quot;GameObject&quot;)</td></tr>
 <tr class="memitem:a25d7e4200ade9fba4264609e336bbfb8" id="r_a25d7e4200ade9fba4264609e336bbfb8"><td class="memTemplParams" colspan="2">template&lt;typename First, typename... ComponentPtrs&gt; <br />
 requires (!std::same_as&lt;std::remove_cvref_t&lt;First&gt;, <a class="el" href="struct_uni_dx_1_1_vector3.html">Vector3</a>&gt;)</td></tr>
 <tr class="memitem:a25d7e4200ade9fba4264609e336bbfb8 template"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25d7e4200ade9fba4264609e336bbfb8">GameObject</a> (wstring_view <a class="el" href="class_uni_dx_1_1_object.html#a462b80cab72539ae5a42e9f39b479ff8">name</a>, First &amp;&amp;first, ComponentPtrs &amp;&amp;... rest)</td></tr>
 <tr class="memitem:a1a89da7f9cbf6037b83f7ad218ebfb52" id="r_a1a89da7f9cbf6037b83f7ad218ebfb52"><td class="memTemplParams" colspan="2">template&lt;typename... ComponentPtrs&gt; </td></tr>
 <tr class="memitem:a1a89da7f9cbf6037b83f7ad218ebfb52 template"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a89da7f9cbf6037b83f7ad218ebfb52">GameObject</a> (const wstring &amp;<a class="el" href="class_uni_dx_1_1_object.html#a462b80cab72539ae5a42e9f39b479ff8">name</a>, <a class="el" href="struct_uni_dx_1_1_vector3.html">Vector3</a> position, ComponentPtrs &amp;&amp;... <a class="el" href="#aceb7c1e1789f1e2ba67e4e4771a9b680">components</a>)</td></tr>
+<tr class="memitem:a5fb67a13fbaae6e35b81fe7f52c5e3cc" id="r_a5fb67a13fbaae6e35b81fe7f52c5e3cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fb67a13fbaae6e35b81fe7f52c5e3cc">~GameObject</a> ()</td></tr>
 <tr class="memitem:a237c3446178cba6e3095dc7b6e36df1c" id="r_a237c3446178cba6e3095dc7b6e36df1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a237c3446178cba6e3095dc7b6e36df1c">Add</a> ()</td></tr>
 <tr class="memitem:a0c55e24089cc59c8b4991ef4bb3dcbbc" id="r_a0c55e24089cc59c8b4991ef4bb3dcbbc"><td class="memTemplParams" colspan="2">template&lt;typename... Rest&gt; </td></tr>
 <tr class="memitem:a0c55e24089cc59c8b4991ef4bb3dcbbc template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c55e24089cc59c8b4991ef4bb3dcbbc">Add</a> (std::unique_ptr&lt; <a class="el" href="#ab0094a406020d6cbb72c87de550d0d17">GameObject</a> &gt; &amp;&amp;first, Rest &amp;&amp;... rest)</td></tr>
@@ -121,7 +122,10 @@ requires (!std::same_as&lt;std::remove_cvref_t&lt;First&gt;, <a class="el" href=
 <tr class="memitem:aeb5cba145a1f89430629023ddfb5eb95 template"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb5cba145a1f89430629023ddfb5eb95">AddComponent</a> (Args &amp;&amp;... args)</td></tr>
 <tr class="memitem:abbd002e21634e2867ff6a2c70610deba" id="r_abbd002e21634e2867ff6a2c70610deba"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:abbd002e21634e2867ff6a2c70610deba template"><td class="memItemLeft" align="right" valign="top">T *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbd002e21634e2867ff6a2c70610deba">GetComponent</a> (bool includeInactive=false)</td></tr>
+<tr class="memitem:a50fa12256682aecd8485d2ce628a2ece" id="r_a50fa12256682aecd8485d2ce628a2ece"><td class="memTemplParams" colspan="2">template&lt;typename Predicate&gt; </td></tr>
+<tr class="memitem:a50fa12256682aecd8485d2ce628a2ece template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ab0094a406020d6cbb72c87de550d0d17">GameObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50fa12256682aecd8485d2ce628a2ece">Find</a> (Predicate pred) const</td></tr>
 <tr class="memitem:a4385f0978668419b8ffab0ce3ae2e4af" id="r_a4385f0978668419b8ffab0ce3ae2e4af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4385f0978668419b8ffab0ce3ae2e4af">SetName</a> (const wstring &amp;n)</td></tr>
+<tr class="memitem:a3db41bfdac1da3521dae2f0a250497fe" id="r_a3db41bfdac1da3521dae2f0a250497fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3db41bfdac1da3521dae2f0a250497fe">checkDestroy</a> ()</td></tr>
 <tr class="memitem:a9eb6d157e864604e12ee9762300cfa49" id="r_a9eb6d157e864604e12ee9762300cfa49"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eb6d157e864604e12ee9762300cfa49">onTriggerEnter</a> (<a class="el" href="class_uni_dx_1_1_collider.html">Collider</a> *other)</td></tr>
 <tr class="memitem:a2a1fa21682c5ddaa680b1424100ee74c" id="r_a2a1fa21682c5ddaa680b1424100ee74c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a1fa21682c5ddaa680b1424100ee74c">onTriggerStay</a> (<a class="el" href="class_uni_dx_1_1_collider.html">Collider</a> *other)</td></tr>
 <tr class="memitem:a175e1420f9335e0a5c76cc4dd0dfb084" id="r_a175e1420f9335e0a5c76cc4dd0dfb084"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a175e1420f9335e0a5c76cc4dd0dfb084">onTriggerExit</a> (<a class="el" href="class_uni_dx_1_1_collider.html">Collider</a> *other)</td></tr>
@@ -144,6 +148,12 @@ requires (!std::same_as&lt;std::remove_cvref_t&lt;First&gt;, <a class="el" href=
 限定公開変数類</h2></td></tr>
 <tr class="memitem:a1a71ea2aa4729991e1d319508ec6924d" id="r_a1a71ea2aa4729991e1d319508ec6924d"><td class="memItemLeft" align="right" valign="top">wstring&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a71ea2aa4729991e1d319508ec6924d">name_</a></td></tr>
 <tr class="memitem:aceb7c1e1789f1e2ba67e4e4771a9b680" id="r_aceb7c1e1789f1e2ba67e4e4771a9b680"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_uni_dx_1_1_component.html">Component</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aceb7c1e1789f1e2ba67e4e4771a9b680">components</a></td></tr>
+<tr class="memitem:a78d71224eaeb4e7888b0a2acffc02a19" id="r_a78d71224eaeb4e7888b0a2acffc02a19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78d71224eaeb4e7888b0a2acffc02a19">isCalledDestroy</a> = false</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+フレンド</h2></td></tr>
+<tr class="memitem:a94284444ce9df711ae71494a51c5c608" id="r_a94284444ce9df711ae71494a51c5c608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94284444ce9df711ae71494a51c5c608">Destroy</a> (<a class="el" href="#ab0094a406020d6cbb72c87de550d0d17">GameObject</a> *gameObject)</td></tr>
+<tr class="memdesc:a94284444ce9df711ae71494a51c5c608"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObjectを破棄 実際に削除されるタイミングはフレームの終了時  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
 <a id="ab0094a406020d6cbb72c87de550d0d17" name="ab0094a406020d6cbb72c87de550d0d17"></a>
@@ -230,6 +240,23 @@ template&lt;typename... ComponentPtrs&gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">ComponentPtrs &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>components</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5fb67a13fbaae6e35b81fe7f52c5e3cc" name="a5fb67a13fbaae6e35b81fe7f52c5e3cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fb67a13fbaae6e35b81fe7f52c5e3cc">&#9670;&#160;</a></span>~GameObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UniDx::GameObject::~GameObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -379,6 +406,42 @@ template&lt;typename T, typename... Args&gt; </div>
 
 </div>
 </div>
+<a id="a3db41bfdac1da3521dae2f0a250497fe" name="a3db41bfdac1da3521dae2f0a250497fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db41bfdac1da3521dae2f0a250497fe">&#9670;&#160;</a></span>checkDestroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UniDx::GameObject::checkDestroy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a50fa12256682aecd8485d2ce628a2ece" name="a50fa12256682aecd8485d2ce628a2ece"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50fa12256682aecd8485d2ce628a2ece">&#9670;&#160;</a></span>Find()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Predicate&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ab0094a406020d6cbb72c87de550d0d17">GameObject</a> * UniDx::GameObject::Find </td>
+          <td>(</td>
+          <td class="paramtype">Predicate</td>          <td class="paramname"><span class="paramname"><em>pred</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="abbd002e21634e2867ff6a2c70610deba" name="abbd002e21634e2867ff6a2c70610deba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbd002e21634e2867ff6a2c70610deba">&#9670;&#160;</a></span>GetComponent()</h2>
 
@@ -399,15 +462,15 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aaffc3fc794f447ebcc0558cfd0b928b6" name="aaffc3fc794f447ebcc0558cfd0b928b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaffc3fc794f447ebcc0558cfd0b928b6">&#9670;&#160;</a></span>GetComponents()</h2>
+<a id="a600845741b8bc94b4194f4cc67e3e8a9" name="a600845741b8bc94b4194f4cc67e3e8a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600845741b8bc94b4194f4cc67e3e8a9">&#9670;&#160;</a></span>GetComponents()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -419,7 +482,7 @@ template&lt;typename T&gt; </div>
           <td class="memname">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_uni_dx_1_1_component.html">Component</a> &gt; &gt; &amp; UniDx::GameObject::GetComponents </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -606,6 +669,34 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">フレンドと関連関数の詳解</h2>
+<a id="a94284444ce9df711ae71494a51c5c608" name="a94284444ce9df711ae71494a51c5c608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94284444ce9df711ae71494a51c5c608">&#9670;&#160;</a></span>Destroy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ab0094a406020d6cbb72c87de550d0d17">GameObject</a> *</td>          <td class="paramname"><span class="paramname"><em>gameObject</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>GameObjectを破棄 実際に削除されるタイミングはフレームの終了時 </p>
+
+</div>
+</div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">メンバ詳解</h2>
 <a id="aceb7c1e1789f1e2ba67e4e4771a9b680" name="aceb7c1e1789f1e2ba67e4e4771a9b680"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aceb7c1e1789f1e2ba67e4e4771a9b680">&#9670;&#160;</a></span>components</h2>
@@ -618,6 +709,28 @@ template&lt;typename T&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="class_uni_dx_1_1_component.html">Component</a>&gt; &gt; UniDx::GameObject::components</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78d71224eaeb4e7888b0a2acffc02a19" name="a78d71224eaeb4e7888b0a2acffc02a19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d71224eaeb4e7888b0a2acffc02a19">&#9670;&#160;</a></span>isCalledDestroy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UniDx::GameObject::isCalledDestroy = false</td>
         </tr>
       </table>
   </td>

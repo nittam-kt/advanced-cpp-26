@@ -42,7 +42,7 @@ public:
         materials.push_back(std::make_shared<Material>());
 
         // マテリアルをシェーダーを読み込んで初期化
-        materials.back()->shader.compile<TVertex>(shaderPath);
+        materials.back()->shader->compile<TVertex>(shaderPath);
     }
 
     /** @brief シェーダーとテクスチャを読み込んでマテリアルを追加 */
@@ -62,7 +62,6 @@ protected:
 
     virtual void OnEnable() override;
     virtual void updatePositionCameraCBuffer() const;
-    virtual bool setMaterialForRender() const;
 };
 
 /** @brief メッシュ用のレンダラーコンポーネント */

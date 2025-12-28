@@ -8,7 +8,8 @@ var indexSectionsWithContent =
   5: "_abcdefgiklmnoprstuvwxyz",
   6: "gs",
   7: "bclr",
-  8: "bclr"
+  8: "bclr",
+  9: "dg"
 };
 
 var indexSectionNames =
@@ -21,7 +22,8 @@ var indexSectionNames =
   5: "variables",
   6: "typedefs",
   7: "enums",
-  8: "enumvalues"
+  8: "enumvalues",
+  9: "related"
 };
 
 var indexSectionLabels =
@@ -34,6 +36,7 @@ var indexSectionLabels =
   5: "変数",
   6: "型定義",
   7: "列挙型",
-  8: "列挙値"
+  8: "列挙値",
+  9: "フレンド"
 };
 

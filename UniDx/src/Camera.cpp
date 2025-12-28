@@ -15,7 +15,7 @@ Matrix4x4 Camera::GetViewMatrix() const
     // ワールド行列を分解
     Vector3 scale, translation;
     Quaternion rotation;
-    Matrix4x4 mtx = transform->getLocalToWorldMatrix();
+    Matrix4x4 mtx = transform->localToWorldMatrix();
     mtx.Decompose(scale, rotation, translation);
 
     // スケールを(1,1,1)にして再構成

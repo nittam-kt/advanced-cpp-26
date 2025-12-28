@@ -91,6 +91,9 @@ $(function(){initNavTree('_singleton_8h.html','',''); });
   <div class="headertitle"><div class="title">Singleton.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>初期化と破棄のタイミングを制御したり、 具体クラスで create できるようにするため 明示的な create と destroy が必要  
+<a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;assert.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_uni_dx_define_8h_source.html">UniDxDefine.h</a>&quot;</code><br />
@@ -110,7 +113,9 @@ $(function(){initNavTree('_singleton_8h.html','',''); });
 <tr class="memitem:a2536a42f921589946dd431cf3cff17d2" id="r_a2536a42f921589946dd431cf3cff17d2"><td class="memTemplParams" colspan="2">template&lt;class T&gt; </td></tr>
 <tr class="memitem:a2536a42f921589946dd431cf3cff17d2 template"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_uni_dx.html#a2536a42f921589946dd431cf3cff17d2">UniDx::Singleton&lt; T &gt;::instance_</a> = nullptr</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>初期化と破棄のタイミングを制御したり、 具体クラスで create できるようにするため 明示的な create と destroy が必要 </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

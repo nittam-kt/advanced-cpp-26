@@ -9,6 +9,12 @@ namespace UniDx {
 class Behaviour;
 class GameObject;
 
+/** 
+  * @brief コンポーネントを破棄
+  * 実際に削除されるタイミングはフレームの終了時
+  */
+void Destroy(Component* component);
+
 
 // --------------------
 // Component基底クラス
@@ -43,6 +49,8 @@ public:
         }
     }
 
+    bool isDestroyed() const { return isCalledDestroy; }
+
     virtual ~Component();
 
 protected:
@@ -54,9 +62,14 @@ protected:
 
     bool isCalledAwake;
     bool isCalledStart;
+    bool isCalledDestroy;
     bool _enabled;
 
     Component();
+    void doDestroy();
+
+    friend void Destroy(Component*);
+    friend class GameObject;
 };
 
 

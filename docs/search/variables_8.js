@@ -8,7 +8,8 @@ var searchData=
   ['intangent_5',['inTangent',['../struct_uni_dx_1_1_keyframe.html#a5e6809d858f8139ee3b526b7bc572abe',1,'UniDx::Keyframe']]],
   ['intensity_6',['intensity',['../class_uni_dx_1_1_light.html#aedfdba36ef1a642219629829268d5428',1,'UniDx::Light']]],
   ['iscalledawake_7',['isCalledAwake',['../class_uni_dx_1_1_component.html#a1be773279b79168c81a7b25d76c1476d',1,'UniDx::Component']]],
-  ['iscalledstart_8',['isCalledStart',['../class_uni_dx_1_1_component.html#a25f03307ef83efdf1853475790f0c800',1,'UniDx::Component']]],
-  ['iskinematic_9',['isKinematic',['../class_uni_dx_1_1_rigidbody.html#a9d29ce4c470777c351499b058524be1f',1,'UniDx::Rigidbody']]],
-  ['istrigger_10',['isTrigger',['../class_uni_dx_1_1_collider.html#ac39acf459122aa4a9d12b401a29ef05c',1,'UniDx::Collider']]]
+  ['iscalleddestroy_8',['isCalledDestroy',['../class_uni_dx_1_1_component.html#ac705220673238df5954a310896ec2839',1,'UniDx::Component::isCalledDestroy'],['../class_uni_dx_1_1_game_object.html#a78d71224eaeb4e7888b0a2acffc02a19',1,'UniDx::GameObject::isCalledDestroy']]],
+  ['iscalledstart_9',['isCalledStart',['../class_uni_dx_1_1_component.html#a25f03307ef83efdf1853475790f0c800',1,'UniDx::Component']]],
+  ['iskinematic_10',['isKinematic',['../class_uni_dx_1_1_rigidbody.html#a9d29ce4c470777c351499b058524be1f',1,'UniDx::Rigidbody']]],
+  ['istrigger_11',['isTrigger',['../class_uni_dx_1_1_collider.html#ac39acf459122aa4a9d12b401a29ef05c',1,'UniDx::Collider']]]
 ];

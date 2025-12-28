@@ -25,8 +25,11 @@ void TextMesh::render(const Matrix4x4& proj) const
     spriteBatch->Begin();
 
     Vector3 pos = transform->position;
+    Vector3 scale = transform->localScale; // 現状はローカルスケールのみ
     Vector2 drawPos(pos.x, pos.y);
-    font->getSpriteFont()->DrawString(spriteBatch.get(), text.c_str(), drawPos);
+    font->getSpriteFont()->DrawString(
+        spriteBatch.get(), text.c_str(), drawPos, color.XMLoad(), 0.0f, Vector2::zero,
+        Vector2(scale.x, scale.y) );
 
     spriteBatch->End();
 }

@@ -39,26 +39,12 @@ void Renderer::updatePositionCameraCBuffer() const
 {
     // ワールド行列を transform から合わせて作成
     ConstantBufferPerObject cb{};
-    cb.world = transform->getLocalToWorldMatrix();
+    cb.world = transform->localToWorldMatrix();
     D3DManager::getInstance()->GetContext()->UpdateSubresource(constantBufferPerObject.Get(), 0, nullptr, &cb, 0, 0);
 
     // 定数バッファ更新
     ID3D11Buffer* cbs[1] = { constantBufferPerObject.Get() };
     D3DManager::getInstance()->GetContext()->VSSetConstantBuffers(CB_PerObject, 1, cbs);
-}
-
-
-// -----------------------------------------------------------------------------
-// 現在の姿勢とカメラをシェーダーの定数バッファに転送
-// -----------------------------------------------------------------------------
-bool Renderer::setMaterialForRender() const
-{
-    bool ret = false;
-    for(auto& material : materials)
-    {
-        ret |= material->setForRender();
-    }
-    return ret; // ひとつでも描画対象があれば true
 }
 
 
@@ -76,15 +62,6 @@ MeshRenderer::MeshRenderer()
 // -----------------------------------------------------------------------------
 void MeshRenderer::render(const Camera& camera) const
 {
-    //-----------------------------
-    // シェーダーをセット
-    //-----------------------------
-    auto required = setMaterialForRender();
-    if (!required)
-    {
-        return;
-    }
-
     // 現在のTransformとカメラの情報をシェーダーのConstantBufferに転送
     updatePositionCameraCBuffer();
 
@@ -94,7 +71,7 @@ void MeshRenderer::render(const Camera& camera) const
     //-----------------------------
     // 描画実行
     //-----------------------------
-    mesh.render();
+    mesh.render(materials);
 }
 
 }

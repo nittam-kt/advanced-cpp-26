@@ -7,13 +7,12 @@
 namespace UniDx
 {
 
-// --------------------
-// Singleton
-//
-// 初期化と破棄のタイミングを制御したり、
-// 具体クラスで create できるようにするため
-// 明示的な create と destroy が必要
-// --------------------
+/**
+ * @file Singleton.h
+ * @brief 初期化と破棄のタイミングを制御したり、
+ * 具体クラスで create できるようにするため
+ * 明示的な create と destroy が必要
+ */
 template<class T>
 class Singleton
 {

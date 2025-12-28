@@ -47,7 +47,7 @@ void addSort(vector<T>& valueVec, vector<float>& compVec, float comp)
 LightManager::LightManager()
 {
     // 環境光
-    ambientColor = Color(0.2f, 0.2f, 0.2f, 1.0f);
+    ambientColor = Color(0.25f, 0.25f, 0.25f, 1.0f);
 
     // ライトのリザーブ
     pointLights.reserve(PointLightCountMax);
@@ -158,7 +158,7 @@ void LightManager::updateLightCBufferObject(Vector3 objPos, int lightCountMax)
 
     for (Light* l : lights_)
     {
-        auto world = l->transform->getLocalToWorldMatrix();       // ワールド行列取得
+        auto world = l->transform->localToWorldMatrix();       // ワールド行列取得
         float rangeInv = l->range != 0.0f ? 1.0f / l->range : 0.0f;
 
         bool popPoint = false; // ポイントライトの削除が必要か

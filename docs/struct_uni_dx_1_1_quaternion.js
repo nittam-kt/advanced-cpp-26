@@ -1,6 +1,6 @@
 var struct_uni_dx_1_1_quaternion =
 [
-    [ "Quaternion", "struct_uni_dx_1_1_quaternion.html#a4f37a53499999688a674b6b919f9d649", null ],
+    [ "Quaternion", "struct_uni_dx_1_1_quaternion.html#a7a91443ba45c5a41eec1dc24f6ded3fe", null ],
     [ "Quaternion", "struct_uni_dx_1_1_quaternion.html#aaf9183f8dc9903541ec92ac5fa0a1f64", null ],
     [ "Quaternion", "struct_uni_dx_1_1_quaternion.html#ac1e8371e96fc42ae4047f1f49deda565", null ],
     [ "Quaternion", "struct_uni_dx_1_1_quaternion.html#a59d8fb3d8cc07b0ff9b110bc2d1529de", null ],

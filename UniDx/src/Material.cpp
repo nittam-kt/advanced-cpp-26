@@ -60,7 +60,8 @@ namespace
 // コンストラクタ
 // -----------------------------------------------------------------------------
 Material::Material() :
-    Object([this]() { return shader.name; }),
+    Object([this]() { return shader->name; }),
+    shader(make_shared<Shader>()),
     color(1, 1, 1, 1),
     mainTexture(
         [this]() { return textures.size() > 0 ? textures.front().get() : nullptr; }
@@ -76,7 +77,7 @@ Material::Material() :
 // -----------------------------------------------------------------------------
 // レンダリング用にデバイスへ設定
 // -----------------------------------------------------------------------------
-bool Material::setForRender() const
+bool Material::bind() const
 {
     // レンダリングモードが合わない場合は何もしない
     // レンダーキューを実装していない代わりの実装
@@ -85,10 +86,10 @@ bool Material::setForRender() const
         return false;
     }
 
-    shader.setToContext();
+    shader->setToContext();
     for (auto& tex : textures)
     {
-        tex->setForRender();
+        tex->bind();
     }
 
     // デプス

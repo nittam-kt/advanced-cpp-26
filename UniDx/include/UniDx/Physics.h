@@ -132,8 +132,10 @@ public:
     void register3d(Collider* collider);
     void unregister3d(Collider* collider);
 
-    // origin, direction, maxDistance, filter (デフォルト nullptr => 全て含める)
-    // 戻り値: ヒット情報を含む optional（ヒットしなければ nullopt）
+    /**
+     * @brief origin, direction, maxDistance, filter (デフォルト nullptr => 全て含める)
+     * @return コライダーにヒットしたとき true
+     */
     bool Raycast(Vector3 origin, Vector3 direction, float maxDistance,
         RaycastHit* hitInfo = nullptr, std::function<bool(const Collider*)> filter = nullptr);
 

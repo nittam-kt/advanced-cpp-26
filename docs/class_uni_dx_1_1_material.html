@@ -106,7 +106,7 @@ UniDx::Material の継承関係図</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
 <tr class="memitem:a4575082e9652f4bdeec00a6e3f206877" id="r_a4575082e9652f4bdeec00a6e3f206877"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4575082e9652f4bdeec00a6e3f206877">Material</a> ()</td></tr>
-<tr class="memitem:ad555b26009f49bb36896ff57a4338733" id="r_ad555b26009f49bb36896ff57a4338733"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad555b26009f49bb36896ff57a4338733">setForRender</a> () const</td></tr>
+<tr class="memitem:a497aa3aaa66a83353ee7ec4207ecff0f" id="r_a497aa3aaa66a83353ee7ec4207ecff0f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a497aa3aaa66a83353ee7ec4207ecff0f">bind</a> () const</td></tr>
 <tr class="memitem:aab7847a2cdb89469ea2736d8f607895f" id="r_aab7847a2cdb89469ea2736d8f607895f"><td class="memItemLeft" align="right" valign="top">std::span&lt; std::shared_ptr&lt; <a class="el" href="class_uni_dx_1_1_texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab7847a2cdb89469ea2736d8f607895f">getTextures</a> ()</td></tr>
 <tr class="memitem:abca317f5811a29b1c3b4185668d8601d" id="r_abca317f5811a29b1c3b4185668d8601d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abca317f5811a29b1c3b4185668d8601d">AddTexture</a> (std::shared_ptr&lt; <a class="el" href="class_uni_dx_1_1_texture.html">Texture</a> &gt; tex)</td></tr>
 <tr class="memitem:a858a7ce105483bdd14510a52ba97ab0d" id="r_a858a7ce105483bdd14510a52ba97ab0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_uni_dx.html#a10da2d2141e6f4e7d752167702398c7b">BlendMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a858a7ce105483bdd14510a52ba97ab0d">getBlendMode</a> () const</td></tr>
@@ -118,7 +118,7 @@ UniDx::Material の継承関係図</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 公開変数類</h2></td></tr>
-<tr class="memitem:a03882d3e2527a2a5d4f3ba58d3d42d8f" id="r_a03882d3e2527a2a5d4f3ba58d3d42d8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_uni_dx_1_1_shader.html">Shader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03882d3e2527a2a5d4f3ba58d3d42d8f">shader</a></td></tr>
+<tr class="memitem:ab85da794c38ee8e6508cd677effa9a83" id="r_ab85da794c38ee8e6508cd677effa9a83"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_uni_dx_1_1_shader.html">Shader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab85da794c38ee8e6508cd677effa9a83">shader</a></td></tr>
 <tr class="memitem:aedf06205b9a226cc24aa98bd85b716da" id="r_aedf06205b9a226cc24aa98bd85b716da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_uni_dx_1_1_color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedf06205b9a226cc24aa98bd85b716da">color</a></td></tr>
 <tr class="memitem:ac50c51fe9fa2e7f8f2901f345356c6a5" id="r_ac50c51fe9fa2e7f8f2901f345356c6a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_uni_dx_1_1_read_only_property.html">ReadOnlyProperty</a>&lt; <a class="el" href="class_uni_dx_1_1_texture.html">Texture</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac50c51fe9fa2e7f8f2901f345356c6a5">mainTexture</a></td></tr>
 <tr class="memitem:afbb53068fd666c6f96dd37a63cd4aa76" id="r_afbb53068fd666c6f96dd37a63cd4aa76"><td class="memItemLeft" align="right" valign="top">D3D11_DEPTH_WRITE_MASK&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbb53068fd666c6f96dd37a63cd4aa76">depthWrite</a></td></tr>
@@ -165,6 +165,23 @@ UniDx::Material の継承関係図</div>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_uni_dx_1_1_texture.html">Texture</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>tex</em></span></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a497aa3aaa66a83353ee7ec4207ecff0f" name="a497aa3aaa66a83353ee7ec4207ecff0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a497aa3aaa66a83353ee7ec4207ecff0f">&#9670;&#160;</a></span>bind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UniDx::Material::bind </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -257,23 +274,6 @@ UniDx::Material の継承関係図</div>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespace_uni_dx.html#a10da2d2141e6f4e7d752167702398c7b">BlendMode</a></td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad555b26009f49bb36896ff57a4338733" name="ad555b26009f49bb36896ff57a4338733"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad555b26009f49bb36896ff57a4338733">&#9670;&#160;</a></span>setForRender()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool UniDx::Material::setForRender </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -425,14 +425,14 @@ UniDx::Material の継承関係図</div>
 
 </div>
 </div>
-<a id="a03882d3e2527a2a5d4f3ba58d3d42d8f" name="a03882d3e2527a2a5d4f3ba58d3d42d8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03882d3e2527a2a5d4f3ba58d3d42d8f">&#9670;&#160;</a></span>shader</h2>
+<a id="ab85da794c38ee8e6508cd677effa9a83" name="ab85da794c38ee8e6508cd677effa9a83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab85da794c38ee8e6508cd677effa9a83">&#9670;&#160;</a></span>shader</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_uni_dx_1_1_shader.html">Shader</a> UniDx::Material::shader</td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="class_uni_dx_1_1_shader.html">Shader</a>&gt; UniDx::Material::shader</td>
         </tr>
       </table>
 </div><div class="memdoc">

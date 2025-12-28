@@ -15,6 +15,7 @@ namespace UniDx {
 
 class Camera;
 class Texture;
+class Material;
 
 // --------------------
 // SubMesh構造体
@@ -246,6 +247,8 @@ public:
         }
     }
 
+    void render(std::span<const std::shared_ptr<Material> > materials) const;
+    
 protected:
     wstring name_;
 };

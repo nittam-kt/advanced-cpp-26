@@ -130,10 +130,10 @@ public:
         float theta1 = PI * 2 * u2;
         float theta2 = PI * 2 * u3;
 
-        float x = sqrt1MinusU1 * std::sinf(theta1);
-        float y = sqrt1MinusU1 * std::cosf(theta1);
-        float z = sqrtU1 * std::sinf(theta2);
-        float w = sqrtU1 * std::cosf(theta2);
+        float x = sqrt1MinusU1 * std::sin(theta1);
+        float y = sqrt1MinusU1 * std::cos(theta1);
+        float z = sqrtU1 * std::sin(theta2);
+        float w = sqrtU1 * std::cos(theta2);
 
         return Quaternion(x, y, z, w);
     }

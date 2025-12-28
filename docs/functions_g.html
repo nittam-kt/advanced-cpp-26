@@ -92,7 +92,7 @@ $(function(){initNavTree('functions_g.html','',''); });
 
 <h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>g&#160;:&#160;<a class="el" href="struct_uni_dx_1_1_color.html#ab959bca04603594a7bf646cffd391966">UniDx::Color</a></li>
-<li>GameObject()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_game_object.html#ab0094a406020d6cbb72c87de550d0d17">UniDx::GameObject</a></li>
+<li>GameObject&#160;:&#160;<a class="el" href="class_uni_dx_1_1_component.html#a00df87c957d8f7ee0fc51f07a0542f4a">UniDx::Component</a>, <a class="el" href="class_uni_dx_1_1_game_object.html#ab0094a406020d6cbb72c87de550d0d17">UniDx::GameObject</a></li>
 <li>gameObject&#160;:&#160;<a class="el" href="class_uni_dx_1_1_component.html#a8b7c735570cdb78e7a9a400649d1b32f">UniDx::Component</a></li>
 <li>GameObjectContainer&#160;:&#160;<a class="el" href="class_uni_dx_1_1_scene.html#a3a6278f79f3e4151c9468fbd09bca13d">UniDx::Scene</a>, <a class="el" href="class_uni_dx_1_1_transform.html#a27f781f09acf04be3eda17386f5b7d5c">UniDx::Transform</a></li>
 <li>get()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_read_only_property.html#ac05c2db23177be404b8e3022149f034e">UniDx::ReadOnlyProperty&lt; T &gt;</a>, <a class="el" href="class_uni_dx_1_1_read_only_property_3_01_t_01_5_01_4.html#a5fa980498d29705cb62f9bb28c80f4c7">UniDx::ReadOnlyProperty&lt; T * &gt;</a></li>
@@ -100,11 +100,11 @@ $(function(){initNavTree('functions_g.html','',''); });
 <li>getBlendMode()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_material.html#a858a7ce105483bdd14510a52ba97ab0d">UniDx::Material</a></li>
 <li>getBounds()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_a_a_b_b_collider.html#aed4cf12bdd2c005fc5c63e971290da33">UniDx::AABBCollider</a>, <a class="el" href="class_uni_dx_1_1_collider.html#ae2391f950aca1116a38ba8223d6b34c7">UniDx::Collider</a>, <a class="el" href="class_uni_dx_1_1_sphere_collider.html#a7ee9652a2a91bc39a1aebec71bd981ad">UniDx::SphereCollider</a></li>
 <li>GetChild()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_transform.html#a1f91481340262d109033204b06dc6ab4">UniDx::Transform</a></li>
-<li>getChildGameObjects()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_transform.html#a3ae48dc86252bf492320e7ceaf0c2c27">UniDx::Transform</a></li>
+<li>getChildGameObjects()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_transform.html#a312bd36dab2c0ea29f39f725d3fa2cd3">UniDx::Transform</a></li>
 <li>getCollider()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_physics_shape.html#af8f1718f433a4f4089d0c3d6abc11799">UniDx::PhysicsShape</a></li>
 <li>GetComponent()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_behaviour.html#a633b22a599fff5082e4e107f02910765">UniDx::Behaviour</a>, <a class="el" href="class_uni_dx_1_1_game_object.html#abbd002e21634e2867ff6a2c70610deba">UniDx::GameObject</a></li>
 <li>GetComponentInParent()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_behaviour.html#a6d8c1bd91dcc06e85c2a498654517d5c">UniDx::Behaviour</a></li>
-<li>GetComponents()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_game_object.html#aaffc3fc794f447ebcc0558cfd0b928b6">UniDx::GameObject</a></li>
+<li>GetComponents()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_game_object.html#a600845741b8bc94b4194f4cc67e3e8a9">UniDx::GameObject</a></li>
 <li>GetContext()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_d3_d_manager.html#ac5ed036554e449b89ee9ea47efb65d18">UniDx::D3DManager</a></li>
 <li>getCorrectPositionBounds()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_physics_actor.html#a4b8895fede9d2e05ae424201e395eead">UniDx::PhysicsActor</a></li>
 <li>getCorrectVelocityBounds()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_physics_actor.html#ae46557be4d68c4b60a915e6efe949d66">UniDx::PhysicsActor</a></li>
@@ -117,10 +117,9 @@ $(function(){initNavTree('functions_g.html','',''); });
 <li>GetKeyDown()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_input.html#a14eec726ab0a56bf98dca2d7c25d804f">UniDx::Input</a></li>
 <li>GetKeys()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_animation_curve.html#abc99c9cfb27635f7f65f00acdbf0ccb1">UniDx::AnimationCurve</a></li>
 <li>GetKeyUp()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_input.html#ac9aa1897c01d65b590c9adc2e71dab7c">UniDx::Input</a></li>
-<li>GetLocalMatrix()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_transform.html#af814c7765c3123b45574b950d3a4ce08">UniDx::Transform</a></li>
-<li>getLocalToWorldMatrix()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_transform.html#a7180bbb11c80dff447ecfc958433c455">UniDx::Transform</a></li>
-<li>GetMaterials()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_gltf_model.html#abceb994cdf0c835cbebf0a421c0278cd">UniDx::GltfModel</a></li>
+<li>GetMaterials()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_gltf_model.html#ac1ada03e6698413e6951bad09b351d1d">UniDx::GltfModel</a></li>
 <li>getMoveVector()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_rigidbody.html#a2f17b8ad3b3eaa93d5d26a4192516d23">UniDx::Rigidbody</a></li>
+<li>GetOrCreateTextureFromGltf_()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_gltf_model.html#a70845794dea0192065d2a191ac105b24">UniDx::GltfModel</a></li>
 <li>GetProjectionMatrix()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_camera.html#ad351d73894108ffeaaa7f8bf73e13f1a">UniDx::Camera</a></li>
 <li>getRigidbody()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_physics_actor.html#a7cd9885643cbb2732380affdf53d5f79">UniDx::PhysicsActor</a></li>
 <li>GetRootGameObjects()&#160;:&#160;<a class="el" href="class_uni_dx_1_1_scene.html#a305aeff4f623e49121b45c7c2ceb923d">UniDx::Scene</a></li>

@@ -70,73 +70,12 @@ void ReadAccessorData(
 }
 
 
-// -----------------------------------------------------------------------------
-// node生成
-// -----------------------------------------------------------------------------
-void GltfModel::createNodeRecursive(const tinygltf::Model& model,
-    int nodeIndex,
-    GameObject* parentGO)
-
-{
-    const tinygltf::Node& node = model.nodes[nodeIndex];
-    assert(parentGO);
-
-        // GameObject を作成
-    unique_ptr<GameObject> go = make_unique<GameObject>();
-    go->SetName( UniDx::ToUtf16(node.name) );
-
-    // 行列を取得
-    Vector3 position;
-    Vector3 scale;
-    Quaternion rotation;
-    if (!node.matrix.empty())
-    {
-        // 4x4行列が直接指定されている場合は
-        // どちらも列優先なので、順番にコピー
-        Matrix4x4 matrix;
-        for (int i = 0; i < 16; ++i)
-        {
-            reinterpret_cast<float*>(&matrix)[i] = static_cast<float>(node.matrix[i]);
-        }
-        matrix.Decompose(scale, rotation, position);
-    }
-    else {
-        // translation/rotation/scaleから合成
-        position = node.translation.size() == 3 ? Vector3((float)node.translation[0], (float)node.translation[1], (float)node.translation[2]) : Vector3::zero;
-        rotation = node.rotation.size() == 4 ? Quaternion((float)node.rotation[0], (float)node.rotation[1], (float)node.rotation[2], (float)node.rotation[3]) : Quaternion::identity;
-        scale = node.scale.size() == 3 ? Vector3((float)node.scale[0], (float)node.scale[1], (float)node.scale[2]) : Vector3::one;
-    }
-    go->transform->localScale = scale;
-    go->transform->localRotation = rotation;
-    go->transform->localPosition = position;
-
-    // メッシュを持っていればアタッチ
-    if (node.mesh >= 0 && node.mesh < submesh.size())
-    {
-        auto* r = go->AddComponent<MeshRenderer>();
-        renderer.push_back(r);
-        r->mesh.submesh.push_back(submesh[node.mesh]);
-    }
-
-    // 親を設定
-    GameObject* ptr = go.get();
-    if (parentGO)
-    {
-        Transform::SetParent(move(go), parentGO->transform);
-    }
-
-    // 子ノードを再帰
-    for (int child : node.children)
-    {
-        createNodeRecursive(model, child, ptr);
-    }
-}
 
 
 // -----------------------------------------------------------------------------
 // gltfファイルを読み込み
 // -----------------------------------------------------------------------------
-bool GltfModel::load_(const wstring& filePath)
+bool GltfModel::load_(const wstring& filePath, bool makeTextureMaterial, std::shared_ptr<Shader> shader)
 {
     Debug::Log(filePath);
 
@@ -158,10 +97,11 @@ bool GltfModel::load_(const wstring& filePath)
     }
 
     // Meshの生成
-    submesh.clear();
+    meshes.clear();
 
     for (const auto& gltfMesh : model->meshes)
     {
+        auto mesh = make_shared<Mesh>();
         for (const auto& primitive : gltfMesh.primitives)
         {
             auto sub = make_shared<OwnedSubMesh>();
@@ -242,7 +182,39 @@ bool GltfModel::load_(const wstring& filePath)
             }
 
             sub->topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-            submesh.push_back(sub);
+            mesh->submesh.push_back(sub);
+        }
+        meshes.push_back(mesh);
+    }
+
+    if (makeTextureMaterial)
+    {
+        // マテリアル
+        for (int i = 0; i < model->materials.size(); ++i)
+        {
+            const auto& gltfMat = model->materials[i];
+            auto material = std::make_shared<Material>();
+            material->shader = shader;
+
+            // glTF 内包テクスチャ（まずは baseColorTexture のみ対応）
+            const int texIndex = gltfMat.pbrMetallicRoughness.baseColorTexture.index;
+            if (texIndex >= 0)
+            {
+                auto& tex = textures[texIndex];
+                if (tex == nullptr)
+                {
+                    tex = GetOrCreateTextureFromGltf_(texIndex, /*isSRGB*/true);
+                    if (tex != nullptr)
+                    {
+                        // モデル指定のラップモード
+                        SetAddressModeUV(tex.get(), texIndex);
+                        material->AddTexture(tex);
+                    }
+                }
+                material->AddTexture(tex);
+            }
+            materials[i] = material;
+            //            AddMaterial(material); // 使うメッシュを考える
         }
     }
 
@@ -251,9 +223,162 @@ bool GltfModel::load_(const wstring& filePath)
     const auto& scene = model->scenes[sceneIndex];
     for (int nodeIndex : scene.nodes)
     {
-        createNodeRecursive(*model.get(), nodeIndex, gameObject);
+        createNodeRecursive(*model.get(), nodeIndex, gameObject, makeTextureMaterial);
     }
     return true;
+}
+
+
+// -----------------------------------------------------------------------------
+// glTF内包テクスチャを生成（baseColor用途など）
+// -----------------------------------------------------------------------------
+std::shared_ptr<Texture> GltfModel::GetOrCreateTextureFromGltf_(int textureIndex, bool isSRGB)
+{
+    if (!model) return nullptr;
+    if (textureIndex < 0 || textureIndex >= static_cast<int>(model->textures.size())) return nullptr;
+
+    const tinygltf::Texture& tex = model->textures[textureIndex];
+    const int sourceIndex = tex.source;
+    if (sourceIndex < 0 || sourceIndex >= static_cast<int>(model->images.size())) return nullptr;
+
+    const tinygltf::Image& img = model->images[sourceIndex];
+    if (img.image.empty() || img.width <= 0 || img.height <= 0)
+    {
+        return nullptr;
+    }
+
+    // tinygltf::Image はデコード済みのピクセルが image に入る（多くは UNSIGNED_BYTE 8bit）
+    if (img.bits != 8 || (img.pixel_type != TINYGLTF_COMPONENT_TYPE_UNSIGNED_BYTE && img.pixel_type != 0))
+    {
+        // 16bit PNG 等が来るとここに入る可能性あり（現状は非対応）
+        Debug::Log(L"[GltfModel] Embedded image format not supported (only 8bit UNORM expected).");
+        return nullptr;
+    }
+
+    std::vector<uint8_t> rgba;
+    const uint8_t* src = img.image.data();
+
+    if (img.component == 4)
+    {
+        // RGBA
+        rgba.assign(src, src + static_cast<size_t>(img.width) * img.height * 4);
+    }
+    else if (img.component == 3)
+    {
+        // RGB -> RGBA
+        rgba.resize(static_cast<size_t>(img.width) * img.height * 4);
+        for (int y = 0; y < img.height; ++y)
+        {
+            for (int x = 0; x < img.width; ++x)
+            {
+                const size_t si = (static_cast<size_t>(y) * img.width + x) * 3;
+                const size_t di = (static_cast<size_t>(y) * img.width + x) * 4;
+                rgba[di + 0] = src[si + 0];
+                rgba[di + 1] = src[si + 1];
+                rgba[di + 2] = src[si + 2];
+                rgba[di + 3] = 255;
+            }
+        }
+    }
+    else
+    {
+        Debug::Log(L"[GltfModel] Embedded image component count not supported (expected 3 or 4).");
+        return nullptr;
+    }
+
+    auto outTex = std::make_shared<Texture>();
+    if (!outTex->LoadFromMemoryRGBA8(rgba.data(), img.width, img.height, isSRGB))
+    {
+        return nullptr;
+    }
+    outTex->setName(UniDx::ToUtf16(img.name));
+
+    return outTex;
+}
+
+
+// -----------------------------------------------------------------------------
+// node生成
+// -----------------------------------------------------------------------------
+void GltfModel::createNodeRecursive(const tinygltf::Model& model,
+    int nodeIndex,
+    GameObject* parentGO, bool attachIncludeMaterial)
+
+{
+    const tinygltf::Node& node = model.nodes[nodeIndex];
+    assert(parentGO);
+
+    // GameObject を作成
+    unique_ptr<GameObject> go = make_unique<GameObject>();
+    go->SetName(UniDx::ToUtf16(node.name));
+
+    // 行列を取得
+    Vector3 position;
+    Vector3 scale;
+    Quaternion rotation;
+    if (!node.matrix.empty())
+    {
+        // 4x4行列が直接指定されている場合は
+        // どちらも列優先なので、順番にコピー
+        Matrix4x4 matrix;
+        for (int i = 0; i < 16; ++i)
+        {
+            reinterpret_cast<float*>(&matrix)[i] = static_cast<float>(node.matrix[i]);
+        }
+        matrix.Decompose(scale, rotation, position);
+    }
+    else {
+        // translation/rotation/scaleから合成
+        position = node.translation.size() == 3 ? Vector3((float)node.translation[0], (float)node.translation[1], (float)node.translation[2]) : Vector3::zero;
+        rotation = node.rotation.size() == 4 ? Quaternion((float)node.rotation[0], (float)node.rotation[1], (float)node.rotation[2], (float)node.rotation[3]) : Quaternion::identity;
+        scale = node.scale.size() == 3 ? Vector3((float)node.scale[0], (float)node.scale[1], (float)node.scale[2]) : Vector3::one;
+    }
+    go->transform->localScale = scale;
+    go->transform->localRotation = rotation;
+    go->transform->localPosition = position;
+    Debug::Log(go->name.get());
+    Debug::Log(position);
+
+    // メッシュを持っていればアタッチ
+    if (node.mesh >= 0 && node.mesh < meshes.size())
+    {
+        auto* r = go->AddComponent<MeshRenderer>();
+        renderer.push_back(r);
+        r->mesh = *meshes[node.mesh]; // メッシュのコピー
+
+        if (attachIncludeMaterial)
+        {
+            // primitivesと同じ順序に生成されたサブメッシュと対応するマテリアルを設定
+            r->materials.clear();
+            const auto& gltfMesh = model.meshes[node.mesh];
+            for (size_t primIdx = 0; primIdx < gltfMesh.primitives.size(); ++primIdx)
+            {
+                const auto& prim = gltfMesh.primitives[primIdx];
+                const int materialIndex = prim.material; // -1 の場合はマテリアル未指定
+                if (0 <= materialIndex)
+                {
+                    r->materials.push_back(materials[materialIndex]);
+                }
+                else
+                {
+                    r->materials.push_back(nullptr);
+                }
+            }
+        }
+    }
+
+    // 親を設定
+    GameObject* ptr = go.get();
+    if (parentGO)
+    {
+        Transform::SetParent(move(go), parentGO->transform);
+    }
+
+    // 子ノードを再帰
+    for (int child : node.children)
+    {
+        createNodeRecursive(model, child, ptr, attachIncludeMaterial);
+    }
 }
 
 

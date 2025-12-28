@@ -31,7 +31,7 @@ enum BlendMode
 class Material : public Object
 {
 public:
-    Shader shader;
+    std::shared_ptr<Shader> shader;
     Color color;
     ReadOnlyProperty<Texture*> mainTexture;
     D3D11_DEPTH_WRITE_MASK depthWrite;
@@ -42,7 +42,7 @@ public:
     Material();
 
     // マテリアル情報設定。Render()内で呼び出す
-    bool setForRender() const;
+    bool bind() const;
 
     // テクスチャの取得
     std::span<std::shared_ptr<Texture>> getTextures() { return textures; }

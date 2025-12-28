@@ -54,7 +54,7 @@ Transform::Transform()
                 Quaternion parentWorldRot, parentWorldRotInv;
                 Vector3 s, t;
                 parent->m_worldMatrix.Decompose(s, parentWorldRot, t);
-                parentWorldRot = Inverse(parentWorldRotInv);
+                parentWorldRotInv = Inverse(parentWorldRot);
                 _localRotation = worldRot * parentWorldRotInv;
             }
             else {
@@ -161,7 +161,7 @@ Transform::~Transform()
 Vector3 Transform::TransformDirection(Vector3 localDirection) const
 {
     // 平行移動成分を除外した回転・スケールのみ適用
-    Matrix4x4 m = getLocalToWorldMatrix();
+    Matrix4x4 m = localToWorldMatrix();
     return m.MultiplyVector(localDirection);
 }
 
@@ -234,7 +234,7 @@ Transform* Transform::GetChild(size_t index) const
     return nullptr;
 }
 
-const Matrix4x4& Transform::GetLocalMatrix() const
+const Matrix4x4& Transform::localMatrix() const
 {
     if (m_dirty) {
         m_localMatrix = DirectX::SimpleMath::Matrix::CreateScale(_localScale.x, _localScale.y, _localScale.z)

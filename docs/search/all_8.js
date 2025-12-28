@@ -21,13 +21,15 @@ var searchData=
   ['instance_5f_18',['instance_',['../class_uni_dx_1_1_singleton.html#a6eac0ea64fb9420399b931a4cd451912',1,'UniDx::Singleton']]],
   ['intangent_19',['inTangent',['../struct_uni_dx_1_1_keyframe.html#a5e6809d858f8139ee3b526b7bc572abe',1,'UniDx::Keyframe']]],
   ['intensity_20',['intensity',['../class_uni_dx_1_1_light.html#aedfdba36ef1a642219629829268d5428',1,'UniDx::Light']]],
-  ['intersects_21',['Intersects',['../struct_uni_dx_1_1_bounds.html#a277bb24eda08700db9f462bff5c3b647',1,'UniDx::Bounds']]],
+  ['intersects_21',['Intersects',['../struct_uni_dx_1_1_bounds.html#ac93cba0b8bba8b6044d06db4a9111ad2',1,'UniDx::Bounds']]],
   ['intersects_22',['intersects',['../class_uni_dx_1_1_collider.html#a49df1dcbd42e0dfe3de53c846c4abe1f',1,'UniDx::Collider::intersects(Collider *other)=0'],['../class_uni_dx_1_1_collider.html#a6f4b343c19d8377cb105a48d95688738',1,'UniDx::Collider::intersects(SphereCollider *other)=0'],['../class_uni_dx_1_1_collider.html#a9bbe00a4596ef0bc6761826eb18eb526',1,'UniDx::Collider::intersects(AABBCollider *other)=0'],['../class_uni_dx_1_1_a_a_b_b_collider.html#a5efa079d9d6aabda69c933278cbf1c9e',1,'UniDx::AABBCollider::intersects(Collider *other)'],['../class_uni_dx_1_1_a_a_b_b_collider.html#acc2e5ebef4ad8dc940b312ecb6ef5e9f',1,'UniDx::AABBCollider::intersects(SphereCollider *other)'],['../class_uni_dx_1_1_a_a_b_b_collider.html#a623e11bc46e7d9d2b30890d56f70b26f',1,'UniDx::AABBCollider::intersects(AABBCollider *other)'],['../class_uni_dx_1_1_sphere_collider.html#aceb1bf65c0c005780abb7c49216b0f53',1,'UniDx::SphereCollider::intersects(Collider *other)'],['../class_uni_dx_1_1_sphere_collider.html#a8391a9f91773097a2345bffc500a635d',1,'UniDx::SphereCollider::intersects(SphereCollider *other)'],['../class_uni_dx_1_1_sphere_collider.html#a6dcb766ab0c56da7c2dd7daf0e54150a',1,'UniDx::SphereCollider::intersects(AABBCollider *other)']]],
   ['inverse_23',['Inverse',['../namespace_uni_dx.html#a899c6877e138876816241d34be59bac8',1,'UniDx']]],
   ['inverse_24',['inverse',['../struct_uni_dx_1_1_matrix4x4.html#ad97f2d7b4effe274aa7e9fef023e961f',1,'UniDx::Matrix4x4']]],
   ['iscalledawake_25',['isCalledAwake',['../class_uni_dx_1_1_component.html#a1be773279b79168c81a7b25d76c1476d',1,'UniDx::Component']]],
-  ['iscalledstart_26',['isCalledStart',['../class_uni_dx_1_1_component.html#a25f03307ef83efdf1853475790f0c800',1,'UniDx::Component']]],
-  ['iskinematic_27',['isKinematic',['../class_uni_dx_1_1_rigidbody.html#a9d29ce4c470777c351499b058524be1f',1,'UniDx::Rigidbody']]],
-  ['istrigger_28',['isTrigger',['../class_uni_dx_1_1_collider.html#ac39acf459122aa4a9d12b401a29ef05c',1,'UniDx::Collider']]],
-  ['isvalid_29',['isValid',['../class_uni_dx_1_1_physics_actor.html#a770bdce2979dea4b3ea15b76c3eab859',1,'UniDx::PhysicsActor::isValid()'],['../class_uni_dx_1_1_physics_shape.html#a39e6f048fd37e7c4faddfb9ece579e72',1,'UniDx::PhysicsShape::isValid()']]]
+  ['iscalleddestroy_26',['isCalledDestroy',['../class_uni_dx_1_1_component.html#ac705220673238df5954a310896ec2839',1,'UniDx::Component::isCalledDestroy'],['../class_uni_dx_1_1_game_object.html#a78d71224eaeb4e7888b0a2acffc02a19',1,'UniDx::GameObject::isCalledDestroy']]],
+  ['iscalledstart_27',['isCalledStart',['../class_uni_dx_1_1_component.html#a25f03307ef83efdf1853475790f0c800',1,'UniDx::Component']]],
+  ['isdestroyed_28',['isDestroyed',['../class_uni_dx_1_1_component.html#a89abffb606dd2253c181af949458e563',1,'UniDx::Component']]],
+  ['iskinematic_29',['isKinematic',['../class_uni_dx_1_1_rigidbody.html#a9d29ce4c470777c351499b058524be1f',1,'UniDx::Rigidbody']]],
+  ['istrigger_30',['isTrigger',['../class_uni_dx_1_1_collider.html#ac39acf459122aa4a9d12b401a29ef05c',1,'UniDx::Collider']]],
+  ['isvalid_31',['isValid',['../class_uni_dx_1_1_physics_actor.html#a770bdce2979dea4b3ea15b76c3eab859',1,'UniDx::PhysicsActor::isValid()'],['../class_uni_dx_1_1_physics_shape.html#a39e6f048fd37e7c4faddfb9ece579e72',1,'UniDx::PhysicsShape::isValid()']]]
 ];

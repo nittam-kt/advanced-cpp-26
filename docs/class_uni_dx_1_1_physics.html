@@ -112,6 +112,7 @@ UniDx::Physics の継承関係図</div>
 <tr class="memitem:a6bd0b7663e8cee2828051df644ed8285" id="r_a6bd0b7663e8cee2828051df644ed8285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bd0b7663e8cee2828051df644ed8285">register3d</a> (<a class="el" href="class_uni_dx_1_1_collider.html">Collider</a> *collider)</td></tr>
 <tr class="memitem:a2e34db71eb050c83ca7830a32f557881" id="r_a2e34db71eb050c83ca7830a32f557881"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e34db71eb050c83ca7830a32f557881">unregister3d</a> (<a class="el" href="class_uni_dx_1_1_collider.html">Collider</a> *collider)</td></tr>
 <tr class="memitem:af9d1e1dfa6dc778b2fcc2065ea58f09d" id="r_af9d1e1dfa6dc778b2fcc2065ea58f09d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9d1e1dfa6dc778b2fcc2065ea58f09d">Raycast</a> (<a class="el" href="struct_uni_dx_1_1_vector3.html">Vector3</a> origin, <a class="el" href="struct_uni_dx_1_1_vector3.html">Vector3</a> direction, float maxDistance, <a class="el" href="struct_uni_dx_1_1_raycast_hit.html">RaycastHit</a> *hitInfo=nullptr, std::function&lt; bool(const <a class="el" href="class_uni_dx_1_1_collider.html">Collider</a> *)&gt; filter=nullptr)</td></tr>
+<tr class="memdesc:af9d1e1dfa6dc778b2fcc2065ea58f09d"><td class="mdescLeft">&#160;</td><td class="mdescRight">origin, direction, maxDistance, filter (デフォルト nullptr =&gt; 全て含める)  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 静的公開変数類</h2></td></tr>
@@ -163,6 +164,9 @@ UniDx::Physics の継承関係図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>origin, direction, maxDistance, filter (デフォルト nullptr =&gt; 全て含める) </p>
+<dl class="section return"><dt>戻り値</dt><dd>コライダーにヒットしたとき true </dd></dl>
 
 </div>
 </div>
