@@ -23,6 +23,8 @@ var annotated_dup =
       [ "ConstantBufferLightPerObject", "struct_uni_dx_1_1_constant_buffer_light_per_object.html", "struct_uni_dx_1_1_constant_buffer_light_per_object" ],
       [ "D3DManager", "class_uni_dx_1_1_d3_d_manager.html", "class_uni_dx_1_1_d3_d_manager" ],
       [ "Font", "class_uni_dx_1_1_font.html", "class_uni_dx_1_1_font" ],
+      [ "MemberFunc", "struct_uni_dx_1_1_member_func.html", "struct_uni_dx_1_1_member_func" ],
+      [ "MemberAction", "struct_uni_dx_1_1_member_action.html", "struct_uni_dx_1_1_member_action" ],
       [ "GameObject", "class_uni_dx_1_1_game_object.html", "class_uni_dx_1_1_game_object" ],
       [ "GltfModel", "class_uni_dx_1_1_gltf_model.html", "class_uni_dx_1_1_gltf_model" ],
       [ "Image", "class_uni_dx_1_1_image.html", "class_uni_dx_1_1_image" ],

@@ -35,6 +35,7 @@ var menudata={children:[
 {text:"g",url:"namespacemembers.html#index_g"},
 {text:"i",url:"namespacemembers.html#index_i"},
 {text:"l",url:"namespacemembers.html#index_l"},
+{text:"m",url:"namespacemembers.html#index_m"},
 {text:"o",url:"namespacemembers.html#index_o"},
 {text:"p",url:"namespacemembers.html#index_p"},
 {text:"r",url:"namespacemembers.html#index_r"},
@@ -47,6 +48,7 @@ var menudata={children:[
 {text:"g",url:"namespacemembers_func.html#index_g"},
 {text:"i",url:"namespacemembers_func.html#index_i"},
 {text:"l",url:"namespacemembers_func.html#index_l"},
+{text:"m",url:"namespacemembers_func.html#index_m"},
 {text:"o",url:"namespacemembers_func.html#index_o"},
 {text:"s",url:"namespacemembers_func.html#index_s"},
 {text:"t",url:"namespacemembers_func.html#index_t"}]},
@@ -140,4 +142,5 @@ var menudata={children:[
 {text:"ファイルメンバ",url:"globals.html",children:[
 {text:"全て",url:"globals.html"},
 {text:"関数",url:"globals_func.html"},
-{text:"変数",url:"globals_vars.html"}]}]}]}
+{text:"変数",url:"globals_vars.html"},
+{text:"マクロ定義",url:"globals_defs.html"}]}]}]}

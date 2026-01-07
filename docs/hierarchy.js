@@ -20,6 +20,8 @@ var hierarchy =
     [ "UniDx::Keyframe", "struct_uni_dx_1_1_keyframe.html", null ],
     [ "UniDx::PhysicsActor::Less", "struct_uni_dx_1_1_physics_actor_1_1_less.html", null ],
     [ "UniDx::Matrix4x4", "struct_uni_dx_1_1_matrix4x4.html", null ],
+    [ "UniDx::MemberAction&lt; C, Args &gt;", "struct_uni_dx_1_1_member_action.html", null ],
+    [ "UniDx::MemberFunc&lt; C, R, Args &gt;", "struct_uni_dx_1_1_member_func.html", null ],
     [ "UniDx::Object", "class_uni_dx_1_1_object.html", [
       [ "UniDx::Component", "class_uni_dx_1_1_component.html", [
         [ "UniDx::Behaviour", "class_uni_dx_1_1_behaviour.html", [

@@ -204,12 +204,6 @@ bool GltfModel::load_(const wstring& filePath, bool makeTextureMaterial, std::sh
                 if (tex == nullptr)
                 {
                     tex = GetOrCreateTextureFromGltf_(texIndex, /*isSRGB*/true);
-                    if (tex != nullptr)
-                    {
-                        // モデル指定のラップモード
-                        SetAddressModeUV(tex.get(), texIndex);
-                        material->AddTexture(tex);
-                    }
                 }
                 material->AddTexture(tex);
             }
@@ -287,6 +281,10 @@ std::shared_ptr<Texture> GltfModel::GetOrCreateTextureFromGltf_(int textureIndex
     }
 
     auto outTex = std::make_shared<Texture>();
+
+    // モデル指定のラップモード
+    SetAddressModeUV(outTex.get(), textureIndex);
+
     if (!outTex->LoadFromMemoryRGBA8(rgba.data(), img.width, img.height, isSRGB))
     {
         return nullptr;
@@ -336,8 +334,6 @@ void GltfModel::createNodeRecursive(const tinygltf::Model& model,
     go->transform->localScale = scale;
     go->transform->localRotation = rotation;
     go->transform->localPosition = position;
-    Debug::Log(go->name.get());
-    Debug::Log(position);
 
     // メッシュを持っていればアタッチ
     if (node.mesh >= 0 && node.mesh < meshes.size())

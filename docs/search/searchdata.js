@@ -6,10 +6,11 @@ var indexSectionsWithContent =
   3: "abcdfgilmoprstu",
   4: "abcdefgiklmnopqrstuvx~",
   5: "_abcdefgiklmnoprstuvwxyz",
-  6: "gs",
+  6: "gmps",
   7: "bclr",
   8: "bclr",
-  9: "dg"
+  9: "dg",
+  10: "u"
 };
 
 var indexSectionNames =
@@ -23,7 +24,8 @@ var indexSectionNames =
   6: "typedefs",
   7: "enums",
   8: "enumvalues",
-  9: "related"
+  9: "related",
+  10: "defines"
 };
 
 var indexSectionLabels =
@@ -37,6 +39,7 @@ var indexSectionLabels =
   6: "型定義",
   7: "列挙型",
   8: "列挙値",
-  9: "フレンド"
+  9: "フレンド",
+  10: "マクロ定義"
 };
 

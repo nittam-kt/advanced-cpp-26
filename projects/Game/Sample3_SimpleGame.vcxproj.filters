@@ -116,5 +116,38 @@
     <CopyFileToFolders Include="..\resource\ShadeSpec.hlsl">
       <Filter>リソース ファイル</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\ModularCharacterPBR.glb">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\Pumpkin-carved-lit-a.glb">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\space_frigate_0.glb">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\brick-1.png">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\brick-2.png">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\wall-1.png">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\wall-2.png">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\wood-1.png">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\wood-2.png">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\Albedo.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\AlbedoShade.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

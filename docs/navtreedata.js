@@ -52,7 +52,8 @@ var NAVTREE =
       [ "ファイルメンバ", "globals.html", [
         [ "全て", "globals.html", null ],
         [ "関数", "globals_func.html", null ],
-        [ "変数", "globals_vars.html", null ]
+        [ "変数", "globals_vars.html", null ],
+        [ "マクロ定義", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -61,12 +62,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_animation_curve_8cpp.html",
-"class_uni_dx_1_1_collider.html#ad44fe9d3685b5c6e963b562a1082f68a",
-"class_uni_dx_1_1_material.html#aedf06205b9a226cc24aa98bd85b716da",
-"class_uni_dx_1_1_rigidbody.html#a8d372ab843bcfa349c0cc79b6b8bdf09",
-"functions_vars_o.html",
-"struct_uni_dx_1_1_contact.html",
-"struct_uni_dx_1_1_sub_mesh.html#a472b5c67216e96c78e36e9199adc5c62"
+"class_uni_dx_1_1_collider.html#aa68146f2185d5fea16d8af75e480292c",
+"class_uni_dx_1_1_material.html#ac50c51fe9fa2e7f8f2901f345356c6a5",
+"class_uni_dx_1_1_rigidbody.html#a49dd96d357108c7473f6f4eef5ef20d8",
+"functions_vars_c.html",
+"struct_uni_dx_1_1_constant_buffer_per_camera.html#a616304d6f97a5cd3b5ee0d54f70f2077",
+"struct_uni_dx_1_1_quaternion.html#afec180a55d274c48c260aa221104e128",
+"struct_uni_dx_1_1_vertex_p_t.html#ad437a9a74c22ee77125220881552f656"
 ];
 
 var SYNCONMSG = 'クリックで同期表示が無効になります';
