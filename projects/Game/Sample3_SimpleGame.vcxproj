@@ -106,7 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\..\..\UniDx\include;$(ProjectDir)\..\..\external\tinygltf;$(ProjectDir)\..\..\external\DirectXTK\Inc;$(ProjectDir)\..\..\external\DirectXTex\DirectXTex</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\..\..\UniDx\include;$(ProjectDir)\..\..\external\tinygltf;$(ProjectDir)\..\..\external\DirectXTK\Inc;$(ProjectDir)\..\..\external\DirectXTex\DirectXTex;$(ProjectDir)\..\include</AdditionalIncludeDirectories>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
@@ -125,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\..\..\UniDx\include;$(ProjectDir)\..\..\external\tinygltf;$(ProjectDir)\..\..\external\DirectXTK\Inc;$(ProjectDir)\..\..\external\DirectXTex\DirectXTex</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;$(ProjectDir)\..\..\UniDx\include;$(ProjectDir)\..\..\external\tinygltf;$(ProjectDir)\..\..\external\DirectXTK\Inc;$(ProjectDir)\..\..\external\DirectXTex\DirectXTex;$(ProjectDir)\..\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
